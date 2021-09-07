@@ -1,0 +1,1 @@
+Вітаємо у світі єдинорогів, <?php echo htmlspecialchars($_POST["name"]); ?>.
