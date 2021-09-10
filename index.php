@@ -75,6 +75,7 @@
 $name = "Ваше справжнє імя єдинорога";
 $email = "А ось тут напишіть свій імейл";
 $pswd = "Ось тут впишіть свій пароль";
+$language = ["en", "ru", "ua"];
 ?>
 
 <form action="/action_page.php" method="post">
@@ -82,12 +83,19 @@ $pswd = "Ось тут впишіть свій пароль";
         <h1>Реєстрація єдинорогів</h1>
         <p>Введіть свої дані, якщо Ви справжній єдинорог</p>
         <hr>
-
+        <label for="language"><b>Виберіть мову</b></label>
+        <label>
+            <select size="">
+                <option value="<?php echo $language[0]?>">English</option>
+                <option value="<?php echo $language[2]?>">Українська</option>
+                <option value="<?php echo $language[1]?>">Русский</option>
+            </select>
+            <hr>
         <label for="name"><b>Ім'я</b></label>
         <label>
-            <input type="text" value="<?php echo $name; ?>" name="name" required>
+            <input type="text" value="<?php echo $name; ?>" name="name" required autofocus>
         </label>
-
+        </label>
         <label for="email"><b>Імейл</b></label>
         <label>
             <input type="text" value="<?php echo $email; ?>" name="email" required>
