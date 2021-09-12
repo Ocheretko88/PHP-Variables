@@ -26,3 +26,5 @@ $minIndex = array_search($minId, $users, true);
 unset($users[$minIndex]);
 
 var_export($users);
+
+unset($array[min(array_keys($array))]);
