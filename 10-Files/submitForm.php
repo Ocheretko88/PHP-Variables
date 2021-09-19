@@ -95,39 +95,34 @@
 </form>
 <?php
 
-
-$users[] = ["login", "password"];
-
-if(isset($_POST["login"], $_POST["password"])) {
-    $login = $_POST["login"];
-    $password = $_POST["password"];
-
-
-    $fileLoginPassword = file("loginPassword.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-    foreach ($fileLoginPassword as $users => $loginPassword) {
-
-        $loginPassword = explode(" ", $users);
-        $i = 0;
-      //  trim($loginPassword);
-        if ($login === $loginPassword[0] && $password === $loginPassword[1]){
-            $welcomePhrase = "Вітаємо з поверненням," . $login;
-            echo $welcomePhrase;
-
-            $numberOfAuthorizations = fopen("numberOfAuthorizations.txt", 'ab');
-            fwrite($numberOfAuthorizations, $welcomePhrase, $i++);
-        }else {
-            $failedPhrase = "На жаль, нам не вдалося знайти такого користувача";
-            echo $failedPhrase;
-
-            $numberOfAuthorizations = fopen("numberOfAuthorizations.txt", 'ab');
-            fwrite($numberOfAuthorizations, $failedPhrase, $i++);
-            fclose($numberOfAuthorizations);
-            break;
-        }
-    }
-
+$login = $_POST['login'] ?? null;
+$password = $_POST['password'] ?? null;
+if ($login === null || $password === null) {
+    die('Логин или пароль не введен.');
 }
+if (!file_exists('data.txt')) {
+    die('Файл не существует.');
+}
+
+$usersResourceFile = fopen('data.txt', 'rb');
+if (!$usersResourceFile) {
+    die('Ошибка чтения файла');
+}
+$isLoggedIn = false;
+while (($userEntity = fgets($usersResourceFile,)) !== false) {
+    [$loginFromFile, $passwordFromFile] = array_map('trim', explode(" ", $userEntity));
+    if ($login === $loginFromFile && $password === $passwordFromFile) {
+        $isLoggedIn = true;
+        break;
+    }
+}
+fclose($usersResourceFile);
+if (!$isLoggedIn) {
+    die('Привет, гость!');
+}
+echo "Привет, $login";
+$logContent = sprintf('%s успешно зашел в систему в %s', $login, date('Y-m-d H:i:s'));
+file_put_contents('logs.txt', $logContent, FILE_APPEND);
 
 if (!empty($loginPassword)) {
     var_export($loginPassword);
