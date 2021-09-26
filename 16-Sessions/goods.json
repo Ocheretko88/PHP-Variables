@@ -1,0 +1,17 @@
+[
+  {
+    "name": "iPhone 11 Pro Max",
+    "price": "$1,000",
+    "quantity": "11"
+  },
+  {
+    "name": "iPhone 12 Pro Max",
+    "price": "$1,500",
+    "quantity": "12"
+  },
+  {
+    "name": "iPhone 13 Pro Max",
+    "price": "$2,000",
+    "quantity": "13"
+  }
+]
