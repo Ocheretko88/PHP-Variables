@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<form method="post" action="../login.php">
+    <h1>Login</h1>
+    <label for="username"></label><input type="text" id="username" placeholder="Username" name="username">
+    <label for="password"></label><input type="password" id="password" placeholder="Password" name="password">
+    <label for="email"></label><input type="password" id="email" placeholder="Email" name="email">
+    <button type="submit" name="login">Log in</button>
+</form>
+</body>
+</html>>
